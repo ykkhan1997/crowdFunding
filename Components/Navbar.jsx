@@ -3,7 +3,7 @@
 import React,{useState,useContext} from 'react'
 
 import { CrowdFundingContext } from '@/Context/CrowdFunding';
-import { Logo } from '.';
+import { Logo } from './page';
 import Menu from './Menu';
 const Navbar = () => {
   const {currentAccount,connectWallet,balance}=useContext(CrowdFundingContext);
