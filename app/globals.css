@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.backgroundMain{
+    background-color: #00040f;
+}
+.secondary{
+    background-color: #00f6ff ;
+}
+.dimWhite{
+    color: rgba(255, 255, 255, 0.7)
+}
+.dimBlue{
+    background-color:rgba(9, 151, 124, 0.1)
+}
