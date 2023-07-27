@@ -10,6 +10,7 @@ const fetchContract = (ProviderOrSigner) =>
 export const CrowdFundingProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [balance,setBalance]=useState("");
+  const [copyText,setCopyText]=useState();
   const title = "This is my first smart contract";
   const createCampaign = async (campaign) => {
     const { title, description, amount, deadline } = campaign;
@@ -122,13 +123,13 @@ export const CrowdFundingProvider = ({ children }) => {
       });
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
-        const provider=new ethers.BrowserProvider(window.ethereum);
-          const Balance=await provider.getBalance(accounts[0]);
-          const ShowBalance=ethers.formatEther(Balance);
-          setBalance(ShowBalance);
       } else {
         console.log("no account found");
       }
+      const provider=new ethers.BrowserProvider(window.ethereum);
+      const Balance=await provider.getBalance(accounts[0]);
+      const ShowBalance=ethers.formatEther(Balance);
+      setBalance(ShowBalance);
     } catch (error) {
       console.log("Something wrong while connecting to web3 wallet");
     }
@@ -150,10 +151,10 @@ export const CrowdFundingProvider = ({ children }) => {
         console.log("Something wrong while connecting to web3 wallet");
       }
   };
-  
   return (
     <CrowdFundingContext.Provider
       value={{
+        checkIfWalletConnected,
         currentAccount,
         title,
         createCampaign,
