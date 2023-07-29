@@ -7,8 +7,7 @@ const PopUp = ({donate,donateFunction,getDonations,setOpenModel}) => {
     const [donationData,setDonationData]=useState();
     const createDonations=async()=>{
         try{
-            const data=await donateFunction(donate.pId,amount);
-            console.log(data);
+            await donateFunction(donate.pId,amount);
         }catch(error){
             console.log(error);
         }

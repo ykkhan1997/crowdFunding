@@ -11,7 +11,6 @@ const fetchContract = (ProviderOrSigner) =>
 export const CrowdFundingProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [balance,setBalance]=useState("");
-  const [copyText,setCopyText]=useState();
   const titleData = "This is my first smart contract";
   const createCampaign = async (campaign) => {
     const { title, description, amount, deadline } = campaign;
@@ -27,7 +26,7 @@ export const CrowdFundingProvider = ({ children }) => {
         new Date(deadline).getTime()
       );
       await transaction.wait();
-      console.log("create campaign successfully",transaction);
+      console.log("create campaign successfully");
     } catch (error) {
       alert("transaction fail", error);
     }

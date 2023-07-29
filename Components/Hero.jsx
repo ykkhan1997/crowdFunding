@@ -12,8 +12,7 @@ const Hero = ({createCampaign,titleData}) => {
   const createNewCampaign=async(e)=>{
     e.preventDefault();
     try{
-      const data=await createCampaign(campaign);
-      console.log(data);
+      await createCampaign(campaign);
       if(campaign.title==""){
         alert("Require title field");
       }else if(campaign.description==""){
