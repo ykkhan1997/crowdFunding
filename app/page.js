@@ -1,11 +1,27 @@
 'use client'
+import React,{ useState,useEffect,useContext } from 'react';
+import { CrowdFundingContext } from '@/Context/CrowdFunding';
+import { Hero,Card } from '@/Components/page';
 
-import React,{useContext} from 'react'
-import { CrowdFundingContext } from '@/Context/CrowdFunding'
 const Home = () => {
-  const {title}=useContext(CrowdFundingContext);
+  const {titleData,createCampaign,getCampaigns,getUserCampaigns}=useContext(CrowdFundingContext);
+  const [allCampaigns,setAllCampaigns]=useState();
+  const [userCampaign,setUserCampaign]=useState();
+  useEffect(()=>{
+    const fetchData=async()=>{
+      const AllData=await getCampaigns();
+      const userData=await getUserCampaigns();
+      setAllCampaigns(AllData);
+      setUserCampaign(userData);
+    }
+    fetchData();
+  },[]);
   return (
-    <div>{title}</div>
+    <>
+    <Hero titleData={titleData} createCampaign={createCampaign}/>
+    <Card title="All Campaigns" allCampaign={allCampaigns}/>
+    <Card title="User Campaigns" allCampaign={userCampaign}/>
+    </>
   )
 }
 

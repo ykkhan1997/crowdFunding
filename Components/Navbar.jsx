@@ -49,7 +49,7 @@ const Navbar = () => {
                 Connect Wallet
               </button>
             ) : (
-              <button className="text-white bg-blue-400 h-12 px-6 rounded shadow-sm font-medium">
+              <button className="text-white bg-blue-400 h-14 px-6 rounded-2xl shadow-sm font-medium">
                 {balance.slice(0, 4)}Matic{" "}
                 <span className="bg-slate-500 p-2 rounded-2xl -mr-2">
                   {currentAccount.slice(0, 6)}...{currentAccount.slice(39)}

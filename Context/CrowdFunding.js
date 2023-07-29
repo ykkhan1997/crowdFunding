@@ -11,7 +11,7 @@ export const CrowdFundingProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [balance,setBalance]=useState("");
   const [copyText,setCopyText]=useState();
-  const title = "This is my first smart contract";
+  const titleData = "This is my first smart contract";
   const createCampaign = async (campaign) => {
     const { title, description, amount, deadline } = campaign;
     const provider = new ethers.BrowserProvider(window.ethereum);
@@ -26,38 +26,35 @@ export const CrowdFundingProvider = ({ children }) => {
         new Date(deadline).getTime()
       );
       await transaction.wait();
-      alert("Created Campaign Successfully");
+      console.log("create campaign successfully",transaction);
     } catch (error) {
       alert("transaction fail", error);
     }
   };
   const getCampaigns = async () => {
-    const provider = new ethers.JsonRpcApiProvider("");
+    const provider = new ethers.JsonRpcProvider();
     const contract = fetchContract(provider);
     const campaigns = await contract.getCampaigns();
     const parsedCampaigns = campaigns.map((campaign, i) => ({
       owner: campaign.owner,
       title: campaign.title,
       description: campaign.description,
-      target: campaign.target
-        ? ethers.formatEther(campaign.target.toStirng())
-        : "",
+      target:campaign.target?ethers.formatEther(campaign.target):"",
       deadline: parseInt(campaign.deadline),
-      amountCollected: campaign.amountCollected
-        ? ethers.formatEther(campaign.amountCollected.toStirng())
-        : "",
+      amountCollected: campaign.amountCollected? ethers.formatEther(campaign.amountCollected.toStirng()): "",
       pId: i,
     }));
     return parsedCampaigns;
   };
   const getUserCampaigns = async () => {
-    const provider = new ethers.JsonRpcProvider("");
+    const provider = new ethers.JsonRpcProvider();
     const contract = fetchContract(provider);
+    let currentUser;
     if (window.ethereum) {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
-      const currentUser = accounts[0];
+    currentUser = accounts[0];
     } else {
       console.log("Please Install web3 wallet");
     }
@@ -71,9 +68,7 @@ export const CrowdFundingProvider = ({ children }) => {
         owner: campaign.owner,
         title: campaign.title,
         description: campaign.description,
-        target: campaign.target
-          ? ethers.formatEther(campaign.target.toStirng())
-          : "",
+        target:campaign.target?ethers.formatEther(campaign.target):"",
         deadline: parseInt(campaign.deadline),
         amountCollected: campaign.amountCollected
           ? ethers.formatEther(campaign.amountCollected.toStirng())
@@ -101,7 +96,7 @@ export const CrowdFundingProvider = ({ children }) => {
     }
   };
   const getDonations = async (pId) => {
-    const provider = new ethers.JsonRpcProvider("");
+    const provider = new ethers.JsonRpcProvider();
     const contract = fetchContract(provider);
     const donations = await contract.getDonators(pId);
     const numberOfDonations = donations[0].length;
@@ -156,7 +151,7 @@ export const CrowdFundingProvider = ({ children }) => {
       value={{
         checkIfWalletConnected,
         currentAccount,
-        title,
+        titleData,
         createCampaign,
         getCampaigns,
         getUserCampaigns,
