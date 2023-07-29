@@ -8,15 +8,6 @@ const PopUp = ({donate,donateFunction,getDonations,setOpenModel}) => {
     const createDonations=async()=>{
         try{
             const data=await donateFunction(donate.pId,amount);
-            if("Notification" in window){
-                Notification.requestPermission().then(function(permission){
-                    
-                    if(permission=="granted"){
-                        var notification=new Notification("Successfully donated your amout to campaign")
-                        return notification;
-                    }
-                })
-            }
         }catch(error){
             console.log(error);
         }
@@ -71,7 +62,7 @@ const PopUp = ({donate,donateFunction,getDonations,setOpenModel}) => {
                     <button
                     className='bg-blue-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg  mr-1 mb-1'
                     type='button'
-                     onClick={()=>!window.ethereum || amount==""?alert("Please enter the amount to donate or Install web3 model for donation"):createDonations()}
+                     onClick={()=>(!window.ethereum?alert("Please Install web3 wallet for create donation"):createDonations() && amount==""?alert("please enter the amount to donate"):"")}
                      >
                         Donate
                     </button>
