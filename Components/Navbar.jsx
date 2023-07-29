@@ -1,9 +1,9 @@
 "use client";
 import React, { useContext, useState } from "react";
-import Logo from "./Logo";
 import { CrowdFundingContext } from "@/Context/CrowdFunding";
 import Menu from "./Menu";
 import Close from "./Close";
+import { Logo } from "./page";
 const Navbar = () => {
   const menuList = ["Home", "About Us", "Contact Us", "Blog"];
   const { currentAccount, connectWallet, balance } =
@@ -20,7 +20,7 @@ const Navbar = () => {
               href="/"
               className="inline-flex items-center mr-8"
             >
-              <Logo color={`text-white`} />
+             <Logo color={`text-white`}/>
               <span className="ml-2 font-bold text-white uppercase tracking-wide">
                 Company
               </span>

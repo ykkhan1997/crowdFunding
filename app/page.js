@@ -7,6 +7,7 @@ const Home = () => {
   const {titleData,createCampaign,getCampaigns,getUserCampaigns}=useContext(CrowdFundingContext);
   const [allCampaigns,setAllCampaigns]=useState();
   const [userCampaign,setUserCampaign]=useState();
+  
   useEffect(()=>{
     const fetchData=async()=>{
       const AllData=await getCampaigns();
@@ -19,8 +20,8 @@ const Home = () => {
   return (
     <>
     <Hero titleData={titleData} createCampaign={createCampaign}/>
-    <Card title="All Campaigns" allCampaign={allCampaigns}/>
-    <Card title="User Campaigns" allCampaign={userCampaign}/>
+    <Card title="All Campaigns" allcampaign={allCampaigns}/>
+    <Card title="User Campaign" allcampaign={userCampaign}/>
     </>
   )
 }
