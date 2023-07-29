@@ -1,8 +1,9 @@
 "use client";
 import React, { createContext, useState, useEffect } from "react";
 import { ethers } from "ethers";
-import { contractAddress, contractAddressAbi } from "./constants";
-
+import {  contractAddressAbi } from "./constants";
+const contractAddress=process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+const alchemyUrl=process.env.NEXT_PUBLIC_ALCHEMY_URL;
 export const CrowdFundingContext = createContext();
 const fetchContract = (ProviderOrSigner) =>
   new ethers.Contract(contractAddress, contractAddressAbi, ProviderOrSigner);
@@ -32,7 +33,7 @@ export const CrowdFundingProvider = ({ children }) => {
     }
   };
   const getCampaigns = async () => {
-    const provider = new ethers.JsonRpcProvider();
+    const provider = new ethers.JsonRpcProvider(alchemyUrl);
     const contract = fetchContract(provider);
     const campaigns = await contract.getCampaigns();
     const parsedCampaigns = campaigns.map((campaign, i) => ({
@@ -47,7 +48,7 @@ export const CrowdFundingProvider = ({ children }) => {
     return parsedCampaigns;
   };
   const getUserCampaigns = async () => {
-    const provider = new ethers.JsonRpcProvider();
+    const provider = new ethers.JsonRpcProvider(alchemyUrl);
     const contract = fetchContract(provider);
     let currentUser;
     if (window.ethereum) {
@@ -94,7 +95,7 @@ export const CrowdFundingProvider = ({ children }) => {
     }
   };
   const getDonations = async (pId) => {
-    const provider = new ethers.JsonRpcProvider();
+    const provider = new ethers.JsonRpcProvider(alchemyUrl);
     const contract = fetchContract(provider);
     const donations = await contract.getDonators(pId);
     const numberOfDonations = donations[0].length;

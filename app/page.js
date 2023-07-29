@@ -9,9 +9,6 @@ const Home = () => {
   const [userCampaign,setUserCampaign]=useState();
   const[openModel,setOpenModel]=useState(false);
   const [donateCampaign,setDonateCampaign]=useState();
-
-
-  
   useEffect(()=>{
     const fetchData=async()=>{
       const AllData=await getCampaigns();
