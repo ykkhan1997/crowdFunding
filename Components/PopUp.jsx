@@ -71,7 +71,7 @@ const PopUp = ({donate,donateFunction,getDonations,setOpenModel}) => {
                     <button
                     className='bg-blue-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg  mr-1 mb-1'
                     type='button'
-                     onClick={()=>!window.ethereum && amount==""?alert("Please enter the amount to donate or Install web3 model for donation"):createDonations()}
+                     onClick={()=>!window.ethereum || amount==""?alert("Please enter the amount to donate or Install web3 model for donation"):createDonations()}
                      >
                         Donate
                     </button>
