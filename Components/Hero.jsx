@@ -14,6 +14,15 @@ const Hero = ({createCampaign,titleData}) => {
     try{
       const data=await createCampaign(campaign);
       console.log(data);
+      if(campaign.title==""){
+        alert("Require title field");
+      }else if(campaign.description==""){
+        alert("Require description field");
+      }else if(campaign.amount==""){
+        alert("amout field is empty");
+      }else if(campaign.deadline==""){
+        alert("deadline field is empty");
+      }
     }catch(error){
       console.log(error);
     }
@@ -115,7 +124,7 @@ const Hero = ({createCampaign,titleData}) => {
                   <div className='mt-4 mb-2 sm:mb-4'>
                     <button
                     type='submit'
-                    onClick={(e)=>window.ethereum?createNewCampaign(e):alert("please install web3 wallet for create campaign")}
+                    onClick={(e)=>window.ethereum?createNewCampaign(e):alert("Please Install Web3 wallet for crete campaign")}
                     className='h-12 px-6 w-full shadow-md font-medium tracking-wide rounded inline-flex items-center justify-center'
                     >
                       Create Campaign

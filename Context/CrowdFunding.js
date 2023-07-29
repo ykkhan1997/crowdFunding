@@ -41,7 +41,7 @@ export const CrowdFundingProvider = ({ children }) => {
       description: campaign.description,
       target:campaign.target?ethers.formatEther(campaign.target):"",
       deadline: parseInt(campaign.deadline),
-      amountCollected: campaign.amountCollected? ethers.formatEther(campaign.amountCollected.toStirng()): "",
+      amountCollected: campaign.amountCollected? ethers.formatEther(campaign.amountCollected): "",
       pId: i,
     }));
     return parsedCampaigns;
@@ -70,9 +70,7 @@ export const CrowdFundingProvider = ({ children }) => {
         description: campaign.description,
         target:campaign.target?ethers.formatEther(campaign.target):"",
         deadline: parseInt(campaign.deadline),
-        amountCollected: campaign.amountCollected
-          ? ethers.formatEther(campaign.amountCollected.toStirng())
-          : "",
+        amountCollected: campaign.amountCollected? ethers.formatEther(campaign.amountCollected): "",
         pId: i,
       }));
     } else {
@@ -104,7 +102,7 @@ export const CrowdFundingProvider = ({ children }) => {
     for (let i = 0; i < numberOfDonations; i++) {
       parsedDonations.push({
         donator: donations[0][i],
-        donation: ethers.formatEther(donations[0][i].toStirng()),
+        donation: ethers.formatEther(donations[1][i]),
       });
     }
     return parsedDonations;

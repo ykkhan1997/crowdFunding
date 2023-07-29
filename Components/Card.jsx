@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Card = ({title,allcampaign}) => {
+const Card = ({title,allcampaign,setOpenModel,setDonate}) => {
     const daysLeft=(deadline)=>{
         const difference=new Date(deadline).getTime()-Date.now();
         const remainingDays=difference/(1000*3600*24);
@@ -11,8 +11,12 @@ const Card = ({title,allcampaign}) => {
         <p className='py-20 font-semibold text-2xl leading-5'>{title}</p>
         <div className='grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full'>
             {
-                allcampaign.map((campaign,i)=>(
-                    <div className='cursor-pointer overflow-hidden border bg-white rounded'>
+                allcampaign?.map((campaign,i)=>(
+                    <div
+                    key={i+1}
+                    className='cursor-pointer overflow-hidden border bg-white rounded'
+                    onClick={()=>(setOpenModel(true),setDonate(campaign))}
+                    >
                         <img
                         src='https://images.pexels.com/photos/932638/pexels-photo-932638.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260'
                         alt='Campaign-Image'
