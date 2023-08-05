@@ -1,2 +1,2 @@
-**First clone the project from github repository and goto crowdfunding directory inside in crowd funding directory
-on terminal ``npm run install and install all dependencies and the run npm run dev to run local server``**
+**First clone the project from github repository and then  goto crowdfunding directory inside in crowd funding directory
+open terminal and type ``npm run install and install all dependencies after that type npm run dev to run your localserver``**
